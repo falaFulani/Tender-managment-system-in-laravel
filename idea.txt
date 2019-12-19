@@ -1,0 +1,29 @@
+navigation items for manager (supper admin)
+1. Dashboard
+2. Meals
+3. Invoices
+3. stats (returant perfomance: N.of orders, Avg meal request, popular dish, users performance )-> done daily, monthly, yearly.
+4. Room managment 
+5. shift management 
+6.  users managment 
+7. 
+
+Navigation items for cook 
+ability to view orders made and change status 
+status: placed order, in preparation, preparing, prepared, ready to serve. 
+
+shit counter, shitf end buttton 
+profile management. 
+
+
+cashier menu
+
+generate Invoice per table 
+
+change status, either paid/not paid. 
+
+waiter menu 
+
+create a meal:table number and items 
+track status of meal 
+print reciept
