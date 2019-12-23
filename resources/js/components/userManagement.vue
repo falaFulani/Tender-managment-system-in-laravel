@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-       
+       <div class="row mt-5">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -70,6 +70,7 @@
             </div>
             <!-- /.card -->
           </div>
+       </div>
           <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -80,35 +81,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Name</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
-  </div>
-   <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Role</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>Admin</option>
-      <option>Finace Manager</option>
-      <option>Board Members</option>
-      <option>Procurment Officer</option>
-      
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Status</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>Active</option>
-      <option>Not Active</option>
-    </select>
-  </div>
-  
-</form>
+        <div class="form-group">
+          <input v-model="form.name" type="text" name="name" class="form-control" :class="{'is-invalid': form.error.has('name')}">
+          <has-error :form="form" field="name"></has-error>
+
+
+
+
+
+
+        </div>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -123,6 +107,19 @@
 
 <script>
     export default {
+      data(){
+        return {
+        form: new Form({
+          name: '',
+          email: '',
+          password: '',
+          type: '',
+          bio: '',
+          photo: ''
+
+        })
+        }
+      },
         mounted() {
             console.log('Component mounted.')
         }
