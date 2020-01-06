@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User; 
-use Validator; 
 use Illuminate\Support\Facades\Hash; 
 
 class UserController extends Controller
@@ -17,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return User::latest()->paginate(20); 
     }
 
     /**
@@ -28,13 +27,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validator = Validator::make($request->all(),[
-            'name'=> 'required|string|max:191',
-            'email'=> 'reqired|string|email|max:191|unique:users',
-            'password' => 'required|string|min:8'
-
-        ]);
         return User::create ([
             'name'=>$request['name'], 
             'email' =>$request['email'],

@@ -24,44 +24,27 @@
                       <th>Email</th>
                       <th>Bio</th>
                       <th>Role</th>
-                      <th>Last Login</th>
                       <th>Created At</th>
                       <th>Action</th>
                       
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>someone@example.com</td>
-                      <td><span class="tag tag-success">Active</span></td>
-                      <td>Board Member </td>
-                      <td>13 minutes</td>
-                      <td>6.02.2018</td>
-                      <td>
+                    <tr v-for="user in users" :key="user.id">
+                      <td>{{user.id}}</td>
+                      <td>{{user.name}}</td>
+                     <td>{{user.email}}</td>
+                     <td>{{user.Bio}}</td>
+                     <td>{{user.role}}</td>
+                     <td>{{user.created_at}}</td>
+                       <td>
                           <div>
                               <button type="button" class="btn btn-secondary"><i class="far fa-edit"></i></button>
                              <button type="button" class="btn btn-danger"> <i class="fas fa-trash"></i></button>
                           </div>
                          </td>
                     </tr>
-                    <tr>
-                      <td>090</td>
-                      <td>Smith Alex</td>
-                      <td>anotherperson@example.com</td>
-                      <td><span class="tag tag-success"> Not Active</span></td>
-                      <td>Procurment </td>
-                      <td>4 hours</td>
-                      <td>10.11.2019</td>
-                      <td>
-                        
-                          <div>
-                              <button type="button" class="btn btn-secondary"><i class="far fa-edit"></i></button>
-                             <button type="button" class="btn btn-danger"> <i class="fas fa-trash"></i></button>
-                          </div>
-                         </td>
-                    </tr>
+                    
                     
                   </tbody>
                 </table>
@@ -130,6 +113,7 @@ import Form  from 'vform';
     export default {
       data(){
         return {
+          users: {}, 
         form: new Form({
           name: '',
           email: '',
@@ -142,12 +126,16 @@ import Form  from 'vform';
         }
       },
       methods:{
+        loadUsers(){
+
+          axios.get("api/user").then(({data}) =>(this.users = data.data));
+
+        }, 
         createUser(){
           this.form.post('api/user'); 
         }
       },
-        mounted() {
-            console.log('Component mounted.')
-        }
+        created() {
+           this.loadUsers();         }
     }
 </script>
